@@ -1,56 +1,46 @@
 [app]
 
-# (str) Title of your application
+# نام برنامه
 title = Mohadeseh Gym
 
 
-# (str) Package name
+# نام پکیج (بدون فاصله)
 package.name = mohadesehgym
 
 
-# (str) Package domain
+# دامنه پکیج
 package.domain = org.mohadeseh
 
 
-# (str) Source code where main.py lives
+# محل main.py
 source.dir = .
 
 
-# (list) Source files to include
-source.include_exts = py,kv,png,jpg,jpeg,ttf,mp3,json,atlas
+# فایل‌هایی که داخل APK قرار می‌گیرند
+source.include_exts = py,kv,png,jpg,jpeg,ttf,mp3,json,atlas,wav
 
 
-# (str) Application version
+# نسخه برنامه
 version = 1.0
 
 
-# (list) Application requirements
+# کتابخانه‌ها
 requirements = python3,kivy==2.3.1
 
 
-# (str) Supported orientation
+# حالت صفحه
 orientation = portrait
 
 
-# (bool) Allow fullscreen
+# تمام صفحه نباشد
 fullscreen = 0
 
 
 
-# (str) Presplash
-# presplash.filename = %(source.dir)s/assets/presplash.png
+# -----------------------
+# Android
+# -----------------------
 
-
-# (str) Icon
-# icon.filename = %(source.dir)s/assets/icon.png
-
-
-
-#
-# Android specific
-#
-
-# (bool) Indicate if the application should be built for Android
 android.api = 34
 
 android.minapi = 23
@@ -60,60 +50,38 @@ android.ndk = 25b
 android.archs = arm64-v8a
 
 
-# (str) Android entry point
+# نسخه دقیق build tools
+android.build_tools_version = 34.0.0
+
+
+# نام Activity
 android.entrypoint = org.kivy.android.PythonActivity
 
 
-# (bool) Enable Android permissions
+# اجازه اینترنت
 android.permissions = INTERNET
 
 
 
-#
-# Python-for-android
-#
+# -----------------------
+# Python For Android
+# -----------------------
 
 p4a.branch = master
 
 
-#
-# Logging
-#
 
-log_level = 2
+# -----------------------
+# فایل‌های اضافی
+# -----------------------
 
-
-#
-# Build settings
-#
-
-warn_on_root = 1
-
-
-#
-# iOS
-#
-
-# ios.kivy_ios_dir = ../kivy-ios
-
-
-#
-# Services
-#
-
-# android.add_src =
-
-
-#
-# Assets
-#
-
-# Include fonts and sounds
 android.add_src = .
 
 
-#
-# Private storage
-#
+# -----------------------
+# تنظیمات Buildozer
+# -----------------------
 
-android.private_storage = True
+log_level = 2
+
+warn_on_root = 1
