@@ -10,13 +10,13 @@ package.domain = org.mohadeseh
 source.dir = .
 
 
-source.include_exts = py,ttf,png,jpg,kv,json,mp3,wav
+source.include_exts = py,kv,png,jpg,ttf,json,mp3,wav
 
 
 version = 1.0
 
 
-requirements = python3,kivy==2.3.1
+requirements = python3==3.11,kivy==2.3.1
 
 
 orientation = portrait
@@ -33,18 +33,13 @@ android.minapi = 23
 
 android.build_tools_version = 34.0.0
 
-
 android.ndk = 25b
 
 
-# Permissions
+android.archs = arm64-v8a,armeabi-v7a
+
 
 android.permissions = INTERNET
-
-
-# Architecture
-
-android.archs = arm64-v8a,armeabi-v7a
 
 
 
