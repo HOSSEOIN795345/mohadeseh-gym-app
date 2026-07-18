@@ -1,34 +1,18 @@
 [app]
 
+# (str) Title of your application
 title = MyApp
-package.name = myapp
-package.domain = org.test
 
+# (str) Package name
+package.name = myapp
+
+# (str) Package domain (IMPORTANT)
+package.domain = org.example
+
+# (str) Source code where the main.py live
 source.dir = .
+
+# (list) Source files to include
 source.include_exts = py,png,jpg,kv,atlas
 
-version = 0.1
-
-requirements = python3,kivy
-
-orientation = portrait
-fullscreen = 0
-
-
-[buildozer]
-log_level = 2
-
-
-[app:android]
-
-android.api = 33
-android.minapi = 21
-
-# 👇 مهم
-android.sdk = 33
-android.ndk = 25b
-
-# 👇 اینو ست می‌کنیم ولی بازم 37 نصب کردیم برای safety
-android.build_tools = 33.0.2
-
-android.accept_sdk_license = True
+#
