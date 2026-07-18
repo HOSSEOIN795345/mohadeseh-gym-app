@@ -12,25 +12,23 @@ version = 0.1
 requirements = python3,kivy
 
 orientation = portrait
-
 fullscreen = 0
 
 
 [buildozer]
-
 log_level = 2
 
 
 [app:android]
 
-# 👇 خیلی مهم
 android.api = 33
 android.minapi = 21
 
-# 👇 هماهنگ با build.yml
+# 👇 مهم
 android.sdk = 33
 android.ndk = 25b
+
+# 👇 اینو ست می‌کنیم ولی بازم 37 نصب کردیم برای safety
 android.build_tools = 33.0.2
 
-# جلوگیری از دانلودهای خراب
 android.accept_sdk_license = True
