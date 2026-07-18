@@ -6,9 +6,12 @@ package.name = mohadesehgym
 
 package.domain = org.mohadeseh
 
+
 source.dir = .
 
-source.include_exts = py,ttf,png,jpg,wav,mp3
+
+source.include_exts = py,ttf,png,jpg,kv,json,mp3,wav
+
 
 version = 1.0
 
@@ -19,14 +22,30 @@ requirements = python3,kivy==2.3.1
 orientation = portrait
 
 
-android.api = 35
+fullscreen = 0
+
+
+# Android
+
+android.api = 34
 
 android.minapi = 23
 
-android.ndk = 27c
+android.build_tools_version = 34.0.0
 
 
-fullscreen = 0
+android.ndk = 25b
+
+
+# Permissions
+
+android.permissions = INTERNET
+
+
+# Architecture
+
+android.archs = arm64-v8a,armeabi-v7a
+
 
 
 [buildozer]
