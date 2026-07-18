@@ -10,8 +10,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
       - name: Install dependencies
         run: |
@@ -33,7 +32,6 @@ jobs:
           pip install --upgrade pip
           pip install buildozer cython
 
-      # 👇 نصب Android SDK command line tools
       - name: Install Android SDK
         run: |
           mkdir -p $HOME/android-sdk/cmdline-tools
@@ -43,21 +41,24 @@ jobs:
           unzip tools.zip
           mv cmdline-tools latest
 
-      # 👇 ست کردن PATH درست
-      - name: Set environment variables
+      - name: Set environment
         run: |
           echo "ANDROID_SDK_ROOT=$HOME/android-sdk" >> $GITHUB_ENV
           echo "ANDROID_HOME=$HOME/android-sdk" >> $GITHUB_ENV
           echo "$HOME/android-sdk/cmdline-tools/latest/bin" >> $GITHUB_PATH
           echo "$HOME/android-sdk/platform-tools" >> $GITHUB_PATH
 
-      # 👇 اینجا sdkmanager الان کار می‌کنه
-      - name: Accept licenses and install SDK
+      # 👇 مهم‌ترین بخش
+      - name: Install SDK packages
         run: |
           yes | sdkmanager --licenses
+
           sdkmanager "platform-tools"
           sdkmanager "platforms;android-33"
+
+          # 👇 هر دو نسخه نصب میشه
           sdkmanager "build-tools;33.0.2"
+          sdkmanager "build-tools;37.0.0"
 
       - name: Build APK
         run: |
