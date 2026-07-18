@@ -3,82 +3,117 @@
 # (str) Title of your application
 title = Mohadeseh Gym
 
+
 # (str) Package name
 package.name = mohadesehgym
+
 
 # (str) Package domain
 package.domain = org.mohadeseh
 
-# (str) Source code directory
+
+# (str) Source code where main.py lives
 source.dir = .
 
+
 # (list) Source files to include
-source.include_exts = py,png,jpg,jpeg,kv,atlas,ttf,mp3,json,wav
+source.include_exts = py,kv,png,jpg,jpeg,ttf,mp3,json,atlas
+
 
 # (str) Application version
 version = 1.0
 
+
 # (list) Application requirements
 requirements = python3,kivy==2.3.1
+
 
 # (str) Supported orientation
 orientation = portrait
 
-# (str) Icon
-icon.filename = %(source.dir)s/assets/icon.png
 
-
-# (list) Supported architectures
-android.archs = arm64-v8a
-
-
-# (int) Android API
-android.api = 34
-
-# (int) Minimum Android API
-android.minapi = 23
-
-# (str) Android NDK version
-android.ndk = 25b
-
-
-# (bool) Fullscreen mode
+# (bool) Allow fullscreen
 fullscreen = 0
+
 
 
 # (str) Presplash
 # presplash.filename = %(source.dir)s/assets/presplash.png
 
 
+# (str) Icon
+# icon.filename = %(source.dir)s/assets/icon.png
 
-[buildozer]
 
-# Log level
+
+#
+# Android specific
+#
+
+# (bool) Indicate if the application should be built for Android
+android.api = 34
+
+android.minapi = 23
+
+android.ndk = 25b
+
+android.archs = arm64-v8a
+
+
+# (str) Android entry point
+android.entrypoint = org.kivy.android.PythonActivity
+
+
+# (bool) Enable Android permissions
+android.permissions = INTERNET
+
+
+
+#
+# Python-for-android
+#
+
+p4a.branch = master
+
+
+#
+# Logging
+#
+
 log_level = 2
 
 
-# (str) Warn when running as root
+#
+# Build settings
+#
+
 warn_on_root = 1
 
 
+#
+# iOS
+#
 
-[app:android]
-
-# Android permissions
-android.permissions = VIBRATE,INTERNET,WRITE_EXTERNAL_STORAGE,READ_EXTERNAL_STORAGE
-
-
-# Enable AndroidX
-android.enable_androidx = True
+# ios.kivy_ios_dir = ../kivy-ios
 
 
-# Use SDL2
-p4a.bootstrap = sdl2
+#
+# Services
+#
+
+# android.add_src =
 
 
-# Java source compatibility
-android.gradle_dependencies =
+#
+# Assets
+#
+
+# Include fonts and sounds
+android.add_src = .
 
 
-# Copy libs
-android.copy_libs = 1
+#
+# Private storage
+#
+
+android.private_storage = True
