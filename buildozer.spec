@@ -1,18 +1,30 @@
 [app]
 
-# (str) Title of your application
-title = MyApp
+title = Mohadeseh Gym
+package.name = mohadesehgym
+package.domain = org.mohadeseh
 
-# (str) Package name
-package.name = myapp
-
-# (str) Package domain (IMPORTANT)
-package.domain = org.example
-
-# (str) Source code where the main.py live
 source.dir = .
+source.include_exts = py,png,jpg,kv,atlas,ttf
 
-# (list) Source files to include
-source.include_exts = py,png,jpg,kv,atlas
+version = 0.1
 
-#
+requirements = python3,kivy
+
+orientation = portrait
+fullscreen = 1
+
+android.api = 33
+android.minapi = 24
+
+android.permissions = INTERNET
+
+android.archs = arm64-v8a, armeabi-v7a
+
+android.allow_backup = True
+android.accept_sdk_license = True
+
+[buildozer]
+
+log_level = 2
+warn_on_root = 1
