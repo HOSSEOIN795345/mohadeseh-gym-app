@@ -2,81 +2,61 @@ name: Build APK
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
-
 
 jobs:
   build:
-
     runs-on: ubuntu-22.04
-
 
     steps:
 
-      # دریافت پروژه
-      - name: Checkout repository
-        uses: actions/checkout@v4
+    - name: Checkout
+      uses: actions/checkout@v4
 
 
-      # نصب پایتون درست
-      - name: Setup Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
 
 
-      # نصب ابزارهای لازم
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install buildozer
-          pip install cython==0.29.37
-          pip install virtualenv
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install buildozer cython==0.29.36
 
 
-      # تنظیم Android SDK
-      - name: Setup Android SDK
-        run: |
-
-          echo "Android Home:"
-          echo $ANDROID_HOME
-
-          echo "Finding sdkmanager..."
-          find $ANDROID_HOME -name sdkmanager || true
-
-          export PATH=$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/cmdline-tools/bin:$PATH
-
-          yes | sdkmanager --licenses || true
-
-          sdkmanager \
-          "platform-tools" \
-          "platforms;android-34" \
-          "build-tools;35.0.0"
+    - name: Accept Android licenses
+      run: |
+        yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
 
 
-
-      # کش برای سرعت بیشتر
-      - name: Cache Buildozer
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.buildozer
-          key: buildozer-cache-${{ runner.os }}
+    - name: Install Android packages
+      run: |
+        $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager \
+        "platform-tools" \
+        "platforms;android-34" \
+        "build-tools;34.0.0"
 
 
-
-      # ساخت APK
-      - name: Build APK
-        run: |
-          buildozer android debug
+    - name: Create buildozer spec
+      run: |
+        buildozer init
 
 
+    - name: Fix buildozer spec
+      run: |
+        sed -i 's/^requirements =.*/requirements = python3,kivy==2.3.1/' buildozer.spec
+        sed -i 's/^android.api =.*/android.api = 34/' buildozer.spec
+        sed -i 's/^android.minapi =.*/android.minapi = 23/' buildozer.spec
 
-      # گرفتن فایل APK
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: Mohadeseh-Gym-APK
-          path: bin/*.apk
+
+    - name: Build APK
+      run: |
+        buildozer android debug
+
+
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: Mohadeseh-Gym-APK
+        path: bin/*.apk
