@@ -1,46 +1,54 @@
 [app]
 
+# نام برنامه
 title = Mohadeseh Gym
 
+# نام پکیج (بدون فاصله)
 package.name = mohadesehgym
 
+# دامنه
 package.domain = org.mohadeseh
 
+# مسیر کد اصلی
 source.dir = .
 
-source.include_exts = py,png,jpg,kv,atlas,ttf,json,mp3,wav
+# فایل‌هایی که باید داخل APK بروند
+source.include_exts = py,png,jpg,jpeg,kv,atlas,ttf,mp3,wav,json
 
+# نسخه
 version = 1.0
 
+
+# وابستگی‌ها
 requirements = python3,kivy==2.3.1
 
+
+# حالت گوشی
 orientation = portrait
 
+
+# اندروید
+android.api = 35
+android.minapi = 23
+
+# NDK سازگار
+android.ndk = 25b
+
+# قبول لایسنس
+android.accept_sdk_license = True
+
+
+# معماری گوشی‌ها
+android.archs = arm64-v8a,armeabi-v7a
+
+
+# بک‌گراند
 fullscreen = 0
 
 
-# Android
-
-android.api = 34
-
-android.minapi = 23
-
-android.ndk = 25b
-
-android.archs = arm64-v8a
+# آیکن (اگر داری)
+# icon.filename = %(source.dir)s/assets/icon.png
 
 
-# permissions
-
-android.permissions = INTERNET
-
-
-# icon اگر نداری کامنت بماند
-# icon.filename = %(source.dir)s/icon.png
-
-
-[buildozer]
-
-log_level = 2
-
-warn_on_root = 1
+# مجوزها (در صورت نیاز)
+# android.permissions = INTERNET
