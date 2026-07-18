@@ -21,8 +21,6 @@ jobs:
       run: |
         sudo apt update
         sudo apt install -y \
-          python3.11 \
-          python3.11-dev \
           python3-pip \
           git \
           zip \
@@ -37,20 +35,19 @@ jobs:
         pip3 install --user cython==0.29.36
 
 
-    - name: Clean
+    - name: Remove old cache
       run: |
         rm -rf .buildozer
         rm -rf bin
 
 
-    - name: Build
+    - name: Build APK
       run: |
-        yes | ~/.local/bin/buildozer android clean
         yes | ~/.local/bin/buildozer android debug
 
 
     - name: Upload APK
       uses: actions/upload-artifact@v4
       with:
-        name: Mohadeseh-Gym
+        name: Mohadeseh-Gym-APK
         path: bin/*.apk
