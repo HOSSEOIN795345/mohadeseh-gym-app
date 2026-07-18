@@ -1,42 +1,93 @@
 name: Build APK
 
+
 on:
+
   workflow_dispatch:
 
+
+
 jobs:
+
+
   build:
+
+
     runs-on: ubuntu-22.04
+
 
     steps:
 
+
     - name: Checkout
+
       uses: actions/checkout@v4
 
 
-    - name: Install dependencies
+
+    - name: Install system packages
+
       run: |
+
         sudo apt update
+
         sudo apt install -y \
           python3-pip \
           python3-venv \
           git \
           zip \
           unzip \
-          openjdk-17-jdk
+          openjdk-17-jdk \
+          autoconf \
+          libtool \
+          pkg-config
 
 
-    - name: Install Buildozer
+
+    - name: Install buildozer
+
       run: |
-        pip3 install --user buildozer cython==0.29.37
+
+        pip3 install --user --upgrade pip
+
+        pip3 install --user buildozer
+
+        pip3 install --user cython==0.29.37
+
+
+
+    - name: Prepare Android licenses
+
+      run: |
+
+        mkdir -p ~/.buildozer
+
+        yes | ~/.local/bin/buildozer android update || true
+
+
+
+    - name: Accept Android licenses
+
+      run: |
+
+        yes | ~/.buildozer/android/platform/android-sdk/tools/bin/sdkmanager --licenses || true
+
 
 
     - name: Build APK
+
       run: |
+
         ~/.local/bin/buildozer android debug
 
 
+
     - name: Upload APK
+
       uses: actions/upload-artifact@v4
+
       with:
-        name: APK
+
+        name: Mohadeseh-Gym-APK
+
         path: bin/*.apk
